@@ -39,6 +39,25 @@ export default {
             {key: 'app', value : '애플리케이션', URL: '#', position: 'left'},
             {key: 'me', value : '프로필', URL: '#', position: 'right'},
         ]
+
+        const left_menus = computed(()=> menus.filter((i) => i.position == 'left'))
+        const right_menus = computed(()=> menus.filter((i) => i.position == 'right'))
+
+        const onMovePage = (evt, menu_object) => {
+            if(evt)
+                evt.preventDefault()
+            
+            menu.value = menu_object.key
+        }
+
+        return {
+            menu,
+            menu_category : [
+                {id : 1, me_auto : true, value : left_menus.value,},
+                {id : 2, me_auto : false, value : right_menus.value,}
+            ],
+            onMovePage,
+        }
     }
 }
 </script>
